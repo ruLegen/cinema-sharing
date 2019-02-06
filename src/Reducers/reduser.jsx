@@ -9,7 +9,7 @@ const initState = {
     currentVideo:0,
     users:[],
     player:{
-        isPlaying:false,
+        isPlaying:true,
         currentTime:0,
     },
     syncID:""

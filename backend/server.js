@@ -4,6 +4,7 @@ const socket = SocketIO(3001)
 const rooms = socket.sockets.adapter.rooms  
 let states = {}
 
+console.log("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST",socket.handshake.headers.host)
 socket.on("connection",(client)=>{
     var currentRoomName;  //Using for tracking disconected users, and notify everyone in this room
     console.log("New connection",client.id)

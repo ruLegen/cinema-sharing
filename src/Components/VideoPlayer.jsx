@@ -38,9 +38,17 @@ class VideoPlayer extends Component
         super(props);
         this.player = React.createRef()
         subscribeToPlayerSync((data)=>{
+        let player = this.player.current
+
             console.log("INFO FROM SERVER",data)
+            player.onPause = null
+            player.onPlay = null
+
             this.props.dispatch({type:"UPDATE_FROM_SERVER",payload:{...data}})
             this.player.current.seekTo(this.props.time)
+            player.onPause = this.handlePause
+            player.onPlay = this.handlePlay
+
         })
     }
 
@@ -49,7 +57,12 @@ class VideoPlayer extends Component
         let isPlaying = this.props.isPlaying
         if(Math.abs(player.getCurrentTime() - this.props.time*player.getDuration()) > 1)
         {
+            player.onPause = null
+            player.onPlay = null
             this.handleSeek(player.getCurrentTime()/player.getDuration())
+            player.onPause = this.handlePause
+            player.onPlay = this.handlePlay
+
         }
         console.info(this.props.isPlaying, player.props.playing)
 
@@ -61,19 +74,21 @@ class VideoPlayer extends Component
     componentDidUpdate(prevProps, prevState, snapshot) {
         let player = this.player.current
         if (prevProps.isPlaying !== this.props.isPlaying) {
-            // Do whatever you want  if(this.props.isPlaying != isPlaying)
+            player.onPause = null
+            player.onPlay = null
             this.props.syncToServer({isPlaying:this.props.isPlaying})
+            player.onPause = this.handlePause
+            player.onPlay = this.handlePlay
+
         }
     }
 
     handlePause = (event)=>{
-        let player = this.player.current
         this.props.togglePlayerTo(false)
     //    this.props.syncToServer({isPlaying:false})
 
     } 
     handlePlay = (event)=>{
-        let player = this.player.current
         this.props.togglePlayerTo(true)
         //this.props.syncToServer({isPlaying:true})
 
