@@ -4,7 +4,6 @@ const socket = SocketIO(3001)
 const rooms = socket.sockets.adapter.rooms  
 let states = {}
 
-console.log("TEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEST",socket.handshake.headers.host)
 socket.on("connection",(client)=>{
     var currentRoomName;  //Using for tracking disconected users, and notify everyone in this room
     console.log("New connection",client.id)
@@ -66,7 +65,7 @@ socket.on("connection",(client)=>{
     
     client.on("SYNC_TO_SERVER",(player)=>{
         states[currentRoomName] = Object.assign({},states[currentRoomName],Object.assign({},states[currentRoomName].player,{player:player.payload}))
-        client.to(currentRoomName).emit("PLAYER_SYNC", {type:"PLAYER_UPDATED",payload:states[currentRoomName].player})
+        client.to(currentRoomName).emit("PLAYER_SYNC", {type:"PLAYER_UPDATED",id:client.id,payload:states[currentRoomName].player})
     })
     client.on("VIDEO_PAUSE",()=>{
         

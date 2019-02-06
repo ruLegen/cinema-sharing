@@ -53,7 +53,6 @@ var CreateVideoObject = (url,img,text)=>{
 
 
 const mapStateToProp = (state)=>{
-    console.log("Store changed",state)
 
     return {
         videoItems:state.videos,

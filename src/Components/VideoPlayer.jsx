@@ -6,7 +6,6 @@ import {emitEvent} from '../js/socket';
 import {subscribeToPlayerSync} from '../js/socket'
 function mapStateToProps(state)
 {
-    console.log(state)
     return{
         isPlaying:state.player.isPlaying,
         time:state.player.currentTime
@@ -37,9 +36,12 @@ class VideoPlayer extends Component
     constructor(props){
         super(props);
         this.player = React.createRef()
+        this.state = {
+            fromServer:false
+        }
         subscribeToPlayerSync((data)=>{
         let player = this.player.current
-
+            this.setState((state)=>{return {...state,fromServer:true} })
             console.log("INFO FROM SERVER",data)
             player.onPause = null
             player.onPlay = null
@@ -48,6 +50,8 @@ class VideoPlayer extends Component
             this.player.current.seekTo(this.props.time)
             player.onPause = this.handlePause
             player.onPlay = this.handlePlay
+
+            this.setState((state)=>{return {...state,fromServer:false} })
 
         })
     }
@@ -59,6 +63,7 @@ class VideoPlayer extends Component
         {
             player.onPause = null
             player.onPlay = null
+            if(!this.state.fromServer)
             this.handleSeek(player.getCurrentTime()/player.getDuration())
             player.onPause = this.handlePause
             player.onPlay = this.handlePlay

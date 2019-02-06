@@ -67,7 +67,6 @@ class Room extends React.Component
             })
         })
         subscribeToUserConnected((data)=>{
-            console.log("CONNNEEEEEEEEEEECTEEDDD",data)
             this.props.userUpdated(data.users)
         })
         subscribeToUserDisconnected((data)=>{
