@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-const server = "localhost:3001"
+const server = " https://8ddc472c.ngrok.io"
 const socket = io(server)
 
 
