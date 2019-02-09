@@ -4,6 +4,7 @@ import MiddlePanel from "./MiddlePanel"
 import VideoPlayer from "./VideoPlayer"
 import OfferButton from "./OfferButton"
 import VideoItem from "./VideoItem"
+import Message from "./Message"
 import Chat from "./Chat"
 import User  from "./User"
 
@@ -16,4 +17,5 @@ export {
         VideoItem,
         User,
         Chat,
+        Message,
 };      

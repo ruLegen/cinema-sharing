@@ -53,6 +53,7 @@ class Room extends React.Component
             available: false,
             text:"",
             roomName:"",
+            messages:[]
         }
 
         subscribeToRoomJoined((data)=>{

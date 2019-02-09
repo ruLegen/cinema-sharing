@@ -17,8 +17,13 @@ const styles = {
 };
 const middlePanelNodeStyle={
     height:"100%",
-    fontSize:"4vh"
-
+    fontSize:"4vh",
+}
+const chatStyle = {
+    height:"90%",
+    fontSize:"4vh",
+    padding:"1%",
+    overflow: "scroll"
 }
 const mapStateToProp = (stateFromStore,ownProps)=>{
     let videoURL = ''
@@ -41,7 +46,7 @@ class MiddlePanel extends Component
                 </Grid>
 
                 <Grid item style={styles.chat}>
-                    <Chat style={middlePanelNodeStyle}></Chat>
+                    <Chat style={chatStyle}></Chat>
                 </Grid>
             </Grid>
         );

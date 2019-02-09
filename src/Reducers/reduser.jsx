@@ -12,6 +12,7 @@ const initState = {
         isPlaying:true,
         currentTime:0,
     },
+    chat:[],
     syncID:""
 }
 
@@ -61,6 +62,9 @@ const Reducer = (state = initState,action)=>{
                     break;
                 case "PLAYER_UPDATED":
                     newState = {...state,player:{...state.player,...action.payload.payload}} //watch later
+                    break;
+                case "CHAT_UPDATED":
+                    newState = {...state, ...{chat:action.payload.payload}}
                     break;
                 default: newState = state
                     break;

@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
-const server = ""
-const socket = io('https://878bc64d.ngrok.io')
+const server = 'https://f39397b9.ngrok.io'
+const socket = io(server)
 
 
 
