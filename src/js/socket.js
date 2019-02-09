@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-const server = 'https://f39397b9.ngrok.io'
+const server = 'https://cinema-sharing-backend.herokuapp.com/'
 const socket = io(server)
 
 
