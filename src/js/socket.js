@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-const server = 'https://cinema-sharing-backend.herokuapp.com/'
+const server = 'http://cinema-sharing-backend.openode.io'
 const socket = io(server)
 
 
